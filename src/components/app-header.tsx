@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Logo from "./logo";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 const routes = [
   {
@@ -13,6 +17,8 @@ const routes = [
 ];
 
 export default function AppHeader() {
+  const activePathname = usePathname();
+
   return (
     <header className="flex justify-between items-center border-b border-white/10 py-2">
       <Logo />
@@ -20,7 +26,17 @@ export default function AppHeader() {
         <ul className="flex text-xs gap-2  ">
           {routes.map((route) => (
             <li key={route.path}>
-              <Link href={route.path}> {route.label}</Link>
+              <Link
+                href={route.path}
+                className={cn(
+                  "text-white/70  rounded-sm px-2 py-1 hover:text-white focus:text-white transition ",
+                  {
+                    "bg-black/10 text-white": route.path === activePathname,
+                  }
+                )}
+              >
+                {route.label}
+              </Link>
             </li>
           ))}
         </ul>
