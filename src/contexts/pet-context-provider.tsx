@@ -4,12 +4,8 @@ import { useState, createContext } from "react";
 
 export const PetContext = createContext(null);
 
-export default function PetContextProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const [pets, setpets] = useState([]);
+export default function PetContextProvider({ data, children }) {
+  const [pets, setpets] = useState(data);
   const [selectedPetId, setSelectedPetId] = useState(null);
 
   return (
