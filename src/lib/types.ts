@@ -1,4 +1,4 @@
-export type pet = {
+export type Pet = {
   id: string;
   name: string;
   ownerName: string;
