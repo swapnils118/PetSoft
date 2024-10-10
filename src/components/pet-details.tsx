@@ -7,7 +7,7 @@ export default function PetDetails() {
   const { selectedPet } = usePetContext();
   return (
     <section className="w-full h-full">
-      <div>
+      <div className="flex items-center px-8  py-5 bg-white border-b border-black/[0.08]">
         <Image
           src={selectedPet?.imageUrl}
           alt="Selected pet image"
