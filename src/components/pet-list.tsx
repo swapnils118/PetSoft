@@ -10,7 +10,7 @@ export default function PetList() {
       {pets.map((pet) => (
         <li key={pet.id}>
           <button
-            onClick={handleChangeSelectedPetId(pet.id)}
+            onClick={() => handleChangeSelectedPetId(pet.id)}
             className="flex items-center gap-3 h-[70px] w-full cursor-pointer px-5 text-base hover:bg-[#EFF1F2] focus:bg-[#EFF1F2] transition"
           >
             <Image
