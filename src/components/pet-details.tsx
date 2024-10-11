@@ -29,7 +29,7 @@ export default function PetDetails() {
 
 function TopBar({ pet }: Props) {
   return (
-    <div className="flex items-center px-8  py-5 bg-white border-b border-black/[0.08]">
+    <div className="flex items-center px-8  py-5 bg-white border-b border-light">
       <Image
         src={pet?.imageUrl}
         alt="Selected pet image"
@@ -65,7 +65,7 @@ function OtherInfo({ pet }: Props) {
 
 function Notes({ pet }: Props) {
   return (
-    <section className=" flex-1 bg-white px-7 py-5 mx-8 mb-9 rounded-md border border-black/[0.08]">
+    <section className=" flex-1 bg-white px-7 py-5 mx-8 mb-9 rounded-md border border-light">
       {pet?.notes}
     </section>
   );
