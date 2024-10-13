@@ -5,9 +5,14 @@ import { Children } from "react";
 type PetButtonProps = {
   actionType: "add" | "edit" | "checkout";
   children?: React.ReactNode;
+  onClick?: () => void;
 };
 
-export default function PetButton({ actionType, children }: PetButtonProps) {
+export default function PetButton({
+  actionType,
+  onClick,
+  children,
+}: PetButtonProps) {
   {
     if (actionType === "add") {
       return (
@@ -21,7 +26,11 @@ export default function PetButton({ actionType, children }: PetButtonProps) {
     }
 
     if (actionType === "checkout") {
-      return <Button variant="secondary">{children}</Button>;
+      return (
+        <Button variant="secondary" onClick={onClick}>
+          {children}
+        </Button>
+      );
     }
   }
   // If we leave off this return statement it will still work because we are taking care of all the possible scenarios in the above conditional statements

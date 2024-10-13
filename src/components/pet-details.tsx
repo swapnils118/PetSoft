@@ -11,6 +11,7 @@ type Props = {
 
 export default function PetDetails() {
   const { selectedPet } = usePetContext();
+
   return (
     <section className=" flex flex-col w-full h-full">
       {!selectedPet ? (
@@ -29,6 +30,7 @@ export default function PetDetails() {
 }
 
 function TopBar({ pet }: Props) {
+  const { handleCheckoutPet } = usePetContext();
   return (
     <div className="flex items-center px-8  py-5 bg-white border-b border-light">
       <Image
@@ -43,7 +45,12 @@ function TopBar({ pet }: Props) {
 
       <div className="ml-auto space-x-3">
         <PetButton actionType="edit">Edit</PetButton>
-        <PetButton actionType="checkout">Checkout</PetButton>
+        <PetButton
+          actionType="checkout"
+          onClick={() => handleCheckoutPet(pet.id)}
+        >
+          Checkout
+        </PetButton>
       </div>
     </div>
   );
