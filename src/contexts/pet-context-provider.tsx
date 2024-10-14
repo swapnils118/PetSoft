@@ -34,11 +34,11 @@ export default function PetContextProvider({
   // Event handlers / Actions
   const handleChangeSelectedPetId = (id: string) => {
     setSelectedPetId(id);
-};
+  };
 
-
-    const handleCheckoutPet = (id: string) => {
-      setPets((prev) => prev.filter((pet) => pet.id !== id));
+  const handleCheckoutPet = (id: string) => {
+    setPets((prev) => prev.filter((pet) => pet.id !== id));
+    setSelectedPetId(null);
   };
 
   return (

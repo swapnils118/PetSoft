@@ -1,6 +1,7 @@
 import { PlusIcon } from "@radix-ui/react-icons";
 import { Button } from "./ui/button";
-import { Children } from "react";
+// import { Children } from "react";
+import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 
 type PetButtonProps = {
   actionType: "add" | "edit" | "checkout";
@@ -16,9 +17,14 @@ export default function PetButton({
   {
     if (actionType === "add") {
       return (
-        <Button size="icon">
-          <PlusIcon className="h-6 w-6" />
-        </Button>
+        <Dialog>
+          <DialogTrigger>
+            <Button size="icon">
+              <PlusIcon className="h-6 w-6" />
+            </Button>
+          </DialogTrigger>
+          <DialogContent>Add a new pet</DialogContent>
+        </Dialog>
       );
     }
     if (actionType === "edit") {
