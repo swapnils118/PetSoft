@@ -8,6 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
+import PetForm from "./pet-form";
 
 type PetButtonProps = {
   actionType: "add" | "edit" | "checkout";
@@ -30,7 +31,7 @@ export default function PetButton({
 
   return (
     <Dialog>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         {actionType === "add" ? (
           <Button size="icon">
             <PlusIcon className="h-6 w-6" />
@@ -46,6 +47,8 @@ export default function PetButton({
             {actionType === "add" ? "Add a new pet" : "Edit pet"}
           </DialogTitle>
         </DialogHeader>
+
+        <PetForm />
       </DialogContent>
     </Dialog>
   );
