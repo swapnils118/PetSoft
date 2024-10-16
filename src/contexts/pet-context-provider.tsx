@@ -43,6 +43,20 @@ export default function PetContextProvider({
     ]);
   };
 
+  const handleEditPet = (petId: string, newPetData: Omit<Pet, "id">) => {
+    setPets((prev) =>
+      prev.map((pet) => {
+        if (pet.id === petId) {
+          return {
+            id: petId,
+            ...newPetData,
+          };
+        }
+        return pet;
+      })
+    );
+  };
+
   const handleChangeSelectedPetId = (id: string) => {
     setSelectedPetId(id);
   };
