@@ -19,6 +19,7 @@ export default async function Layout({
   // const data: Pet[] = await response.json();
   // console.log(data);
 
+  // Using Prisma
   const pets = await prisma.pet.findMany();
 
   return (
