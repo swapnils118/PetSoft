@@ -19,7 +19,8 @@ type TPetContext = {
   handleCheckoutPet: (id: string) => void;
   handleChangeSelectedPetId: (id: string) => void;
 };
- | null>(null);
+
+export const PetContext = createContext<TPetContext | null>(null);
 
 export default function PetContextProvider({
   data: pets,
