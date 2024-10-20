@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
-import { addPet } from "@/actions/actions";
+import { addPet, editPet } from "@/actions/actions";
 import PetFormBtn from "./pet-form-btn";
 import { toast } from "sonner";
 
@@ -47,10 +47,18 @@ export default function PetForm({
   return (
     <form
       action={async (formData) => {
-        const error = await addPet(formData);
-        if (error) {
-          toast.warning(error.message);
-          return;
+        if (actionType === "add") {
+          const error = await addPet(formData);
+          if (error) {
+            toast.warning(error.message);
+            return;
+          }
+        } else if (actionType === "edit") {
+          const error = await editPet(selectedPet?.id, formData);
+          if (error) {
+            toast.warning(error.message);
+            return;
+          }
         }
         onFormSubmission();
       }}
