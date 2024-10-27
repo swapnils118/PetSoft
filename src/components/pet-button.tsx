@@ -68,9 +68,3 @@ export default function PetButton({
     </Dialog>
   );
 }
-// if (actionType === "edit") {
-//   return <Button variant="secondary">{children}</Button>;
-// }
-
-// If we leave off this return statement it will still work because we are taking care of all the possible scenarios in the above conditional statements
-//   return <Button>Edit</Button>;
