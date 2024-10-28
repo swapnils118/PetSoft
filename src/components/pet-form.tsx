@@ -53,12 +53,16 @@ export default function PetForm({
   // REACT-HOOK-FORM
   const {
     register,
+    trigger,
     formState: { errors },
   } = useForm<TPetForm>();
 
   return (
     <form
       action={async (formData) => {
+        const result = await trigger();
+        if (!result) return;
+
         onFormSubmission();
 
         const petData = {
@@ -82,13 +86,31 @@ export default function PetForm({
       <div className="space-y-3">
         <div className="space-y-1">
           <Label htmlFor="name">Name</Label>
-          <Input id="name" {...register("name")} />
+          <Input
+            id="name"
+            {...register("name", {
+              required: "Name is required",
+              minLength: {
+                value: 3,
+                message: "Name should be atleast 3 characters long",
+              },
+            })}
+          />
           {errors.name && <p className="text-red-500">{errors.name.message}</p>}
         </div>
 
         <div>
           <Label htmlFor="ownerName">Owner Name</Label>
-          <Input id="ownerName" {...register("ownerName")} />
+          <Input
+            id="ownerName"
+            {...register("ownerName", {
+              required: "Owner name is required",
+              maxLength: {
+                value: 5,
+                message: "Only 5 characters are allowed for this field",
+              },
+            })}
+          />
           {errors.ownerName && (
             <p className="text-red-500">{errors.ownerName.message}</p>
           )}
