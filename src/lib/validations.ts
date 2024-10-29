@@ -1,14 +1,16 @@
 import { z } from "zod";
 import { DEFAULT_PET_IMAGE } from "./constants";
 
+export const petIdSchema = z.string().cuid();
+
 export const petFormSchema = z
   .object({
-    name: z.string().trim().min(1, { message: "Name is required" }).max(20),
+    name: z.string().trim().min(1, { message: "Name is required" }).max(10),
     ownerName: z
       .string()
       .trim()
       .min(1, { message: "Owner name is required" })
-      .max(20),
+      .max(15),
     imageUrl: z.union([
       z.literal(""),
       z.string().trim().url({ message: "Image url must be a valid url" }),
