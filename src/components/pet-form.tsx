@@ -8,6 +8,8 @@ import PetFormBtn from "./pet-form-btn";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { DEFAULT_PET_IMAGE } from "@/lib/constants";
+import { petFormSchema, TPetForm } from "@/lib/validations";
 
 type PetFormProps = {
   actionType: "add" | "edit";
@@ -22,33 +24,31 @@ type PetFormProps = {
 //   notes: string;
 // };
 
-const petFormSchema = z
-  .object({
-    name: z.string().trim().min(1, { message: "Name is required" }).max(20),
-    ownerName: z
-      .string()
-      .trim()
-      .min(1, { message: "Owner name is required" })
-      .max(20),
-    imageUrl: z.union([
-      z.literal(""),
-      z.string().trim().url({ message: "Image url must be a valid url" }),
-    ]),
-    age: z.coerce
-      .number()
-      .int()
-      .positive()
-      .max(18, { message: "Should be less than 18" }),
-    notes: z.union([z.literal(""), z.string().trim().max(1000)]),
-  })
-  .transform((data) => ({
-    ...data,
-    imageUrl:
-      data.imageUrl ||
-      "https://bytegrad.com/course-assets/react-nextjs/pet-placeholder.png",
-  }));
+// const petFormSchema = z
+//   .object({
+//     name: z.string().trim().min(1, { message: "Name is required" }).max(20),
+//     ownerName: z
+//       .string()
+//       .trim()
+//       .min(1, { message: "Owner name is required" })
+//       .max(20),
+//     imageUrl: z.union([
+//       z.literal(""),
+//       z.string().trim().url({ message: "Image url must be a valid url" }),
+//     ]),
+//     age: z.coerce
+//       .number()
+//       .int()
+//       .positive()
+//       .max(18, { message: "Should be less than 18" }),
+//     notes: z.union([z.literal(""), z.string().trim().max(1000)]),
+//   })
+//   .transform((data) => ({
+//     ...data,
+//     imageUrl: data.imageUrl || DEFAULT_PET_IMAGE,
+//   }));
 
-type TPetForm = z.infer<typeof petFormSchema>;
+// type TPetForm = z.infer<typeof petFormSchema>;
 
 export default function PetForm({
   actionType,
@@ -91,13 +91,14 @@ export default function PetForm({
 
   return (
     <form
-      action={async (formData) => {
+      action={async () => {
         const result = await trigger();
         if (!result) return;
 
         onFormSubmission();
 
         const petData = getValues();
+        petData.imageUrl = petData.imageUrl || DEFAULT_PET_IMAGE;
 
         if (actionType === "add") {
           await handleAddPet(petData);
