@@ -55,28 +55,28 @@ export default function PetForm({
 }: PetFormProps) {
   const { handleAddPet, handleEditPet, selectedPet } = usePetContext();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
-    // const newPet = Object.fromEntries(formData.entries());
-    const pet = {
-      name: formData.get("name") as string,
-      ownerName: formData.get("ownerName") as string,
-      imageUrl:
-        (formData.get("imageUrl") as string) ||
-        "https://bytegrad.com/course-assets/react-nextjs/pet-placeholder.png",
-      age: +(formData.get("age") as string),
-      notes: formData.get("notes") as string,
-    };
-    if (actionType === "add") {
-      handleAddPet(pet);
-    } else if (actionType === "edit") {
-      handleEditPet(selectedPet!.id, pet);
-    }
+  //   const formData = new FormData(event.currentTarget);
+  //   // const newPet = Object.fromEntries(formData.entries());
+  //   const pet = {
+  //     name: formData.get("name") as string,
+  //     ownerName: formData.get("ownerName") as string,
+  //     imageUrl:
+  //       (formData.get("imageUrl") as string) ||
+  //       "https://bytegrad.com/course-assets/react-nextjs/pet-placeholder.png",
+  //     age: +(formData.get("age") as string),
+  //     notes: formData.get("notes") as string,
+  //   };
+  //   if (actionType === "add") {
+  //     handleAddPet(pet);
+  //   } else if (actionType === "edit") {
+  //     handleEditPet(selectedPet!.id, pet);
+  //   }
 
-    onFormSubmission();
-  };
+  //   onFormSubmission();
+  // };
 
   // REACT-HOOK-FORM
   const {
