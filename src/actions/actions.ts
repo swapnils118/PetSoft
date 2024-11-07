@@ -6,7 +6,6 @@ import { authSchema, petFormSchema, petIdSchema } from "@/lib/validations";
 import { revalidatePath } from "next/cache";
 import bcrypt from "bcryptjs";
 import { checkAuth, getPetById } from "@/lib/server-utils";
-import { redirect } from "next/navigation";
 import { Prisma } from "@prisma/client";
 import { AuthError } from "next-auth";
 
@@ -88,6 +87,8 @@ export async function signUp(prevState: unknown, formData: unknown) {
 }
 
 export async function logOut() {
+  await sleep(1000);
+
   await signOut({ redirectTo: "/" });
 }
 
