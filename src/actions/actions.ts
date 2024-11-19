@@ -1,7 +1,6 @@
 "use server";
 import { signIn, signOut } from "@/lib/auth";
 import prisma from "@/lib/db";
-import { sleep } from "@/lib/utils";
 import { authSchema, petFormSchema, petIdSchema } from "@/lib/validations";
 import { revalidatePath } from "next/cache";
 import bcrypt from "bcryptjs";
@@ -9,6 +8,14 @@ import { checkAuth, getPetById } from "@/lib/server-utils";
 import { Prisma } from "@prisma/client";
 import { AuthError } from "next-auth";
 import { redirect } from "next/navigation";
+
+// const dotenv = require("dotenv");
+// dotenv.config();
+require("dotenv").config();
+
+// const stripe = require("stripe")({
+//   apiKey: process.env.STRIPE_SECRET_KEY,
+// });
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
